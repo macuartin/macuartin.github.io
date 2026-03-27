@@ -3,6 +3,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="About">
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Miguel Cuartin",
+    "url": "https://macuartin.com/about/",
+    "jobTitle": "Engineering Manager",
+    "sameAs": [
+      "https://github.com/macuartin",
+      "https://www.linkedin.com/in/macuartin/"
+    ]
+  })} />
   <h1>About</h1>
 
   <section class="about-section">

@@ -1,0 +1,27 @@
+# macuartin.com
+
+> Blog personal de Miguel Cuartin, engineering manager con más de 10 años en platform engineering, infraestructura y operaciones.
+
+## Sobre el autor
+
+Miguel Cuartin es engineering manager especializado en platform engineering, SRE, cloud infrastructure y ciberseguridad. Ha trabajado en fintech, banca, e-commerce y energía desde Venezuela, Colombia y España. Actualmente lidera equipos de platform engineering y ciberseguridad, y trabaja en AI aplicada a operaciones (Agentic DevOps).
+
+## Temas
+
+- Platform engineering y SRE
+- AI aplicada a operaciones y organizaciones
+- Liderazgo técnico y diseño organizativo
+- Infraestructura cloud (AWS, GCP, Kubernetes)
+- Ciberseguridad y cumplimiento normativo
+
+## Contenido
+
+- [Brooks tenía razón: la AI no cambia esa ley](https://macuartin.com/posts/brooks-tenia-razon-la-ai-no-cambia-esa-ley/): La Ley de Brooks tiene 50 años y sigue vigente. La AI no la invalida, la amplifica. El problema nunca fue la velocidad técnica.
+
+## Recursos
+
+- Sitemap: https://macuartin.com/sitemap-index.xml
+- RSS: https://macuartin.com/rss.xml
+- About: https://macuartin.com/about/
+- GitHub: https://github.com/macuartin
+- LinkedIn: https://www.linkedin.com/in/macuartin/

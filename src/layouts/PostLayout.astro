@@ -14,6 +14,26 @@ interface Props {
 }
 
 const { frontmatter } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": frontmatter.title,
+  "description": frontmatter.description,
+  "datePublished": frontmatter.date,
+  ...(frontmatter.updatedDate && { "dateModified": frontmatter.updatedDate }),
+  "author": {
+    "@type": "Person",
+    "name": "Miguel Cuartin",
+    "url": new URL("/about/", Astro.site).href,
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL.href,
+  },
+  ...(frontmatter.tags && { "keywords": frontmatter.tags.join(", ") }),
+};
 const formattedDate = new Date(frontmatter.date).toLocaleDateString("es-ES", {
   year: "numeric",
   month: "long",
@@ -29,6 +49,7 @@ const formattedUpdatedDate = frontmatter.updatedDate
 ---
 
 <BaseLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image}>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingSchema)} />
   <article>
     <header class="post-header">
       <h1>{frontmatter.title}</h1>
