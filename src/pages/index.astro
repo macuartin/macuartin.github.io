@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostCard from "../components/PostCard.astro";
+import { getCollection } from "astro:content";
+import { getReadingTime } from "../utils/readingTime";
+
+const posts = (await getCollection("posts", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 5);
+---
+
+<BaseLayout title="Inicio">
+  <section class="intro">
+    <h1>Hola, soy Miguel</h1>
+    <p>
+      Engineering manager con más de 10 años en infraestructura, plataformas
+      y operaciones. Escribo sobre las cosas que aprendo, las decisiones
+      técnicas que tomo y los errores que prefiero no repetir.
+    </p>
+  </section>
+
+  {posts.length > 0 && (
+    <section>
+      <h2>Posts recientes</h2>
+      {posts.map((post) => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.date.toISOString()}
+          url={`/posts/${post.id}/`}
+          tags={post.data.tags}
+          readingTime={getReadingTime(post.body)}
+        />
+      ))}
+      <a href="/posts" class="see-all">Ver todos los posts &rarr;</a>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .intro {
+    margin-bottom: 2rem;
+  }
+
+  .intro h1 {
+    margin-top: 0;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  .see-all {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+  }
+</style>

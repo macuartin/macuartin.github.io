@@ -1,0 +1,98 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    date: string;
+    updatedDate?: string;
+    tags?: string[];
+    image?: string;
+    readingTime?: number;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const formattedDate = new Date(frontmatter.date).toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const formattedUpdatedDate = frontmatter.updatedDate
+  ? new Date(frontmatter.updatedDate).toLocaleDateString("es-ES", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : null;
+---
+
+<BaseLayout title={frontmatter.title} description={frontmatter.description} image={frontmatter.image}>
+  <article>
+    <header class="post-header">
+      <h1>{frontmatter.title}</h1>
+      <div class="post-meta">
+        <time datetime={frontmatter.date}>{formattedDate}</time>
+        {frontmatter.readingTime && (
+          <span>&middot; {frontmatter.readingTime} min de lectura</span>
+        )}
+        {formattedUpdatedDate && (
+          <span class="updated">(actualizado: {formattedUpdatedDate})</span>
+        )}
+      </div>
+      {frontmatter.tags && (
+        <div class="tags">
+          {frontmatter.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )}
+    </header>
+    <div class="post-content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .post-header h1 {
+    margin-top: 0;
+    font-size: 2.25rem;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  .updated {
+    font-style: italic;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  .tag {
+    background: var(--color-bg-alt);
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: 1px solid var(--color-border);
+  }
+
+  .post-content {
+    line-height: 1.8;
+  }
+</style>

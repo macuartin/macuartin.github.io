@@ -1,0 +1,95 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  date: string;
+  url: string;
+  tags?: string[];
+  readingTime?: number;
+}
+
+const { title, description, date, url, tags, readingTime } = Astro.props;
+const formattedDate = new Date(date).toLocaleDateString("es-ES", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<article class="post-card">
+  <a href={url}>
+    <div class="post-meta">
+      <time datetime={date}>{formattedDate}</time>
+      {readingTime && <span class="reading-time">&middot; {readingTime} min de lectura</span>}
+    </div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+    {tags && (
+      <div class="tags">
+        {tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </div>
+    )}
+  </a>
+</article>
+
+<style>
+  .post-card a {
+    display: block;
+    padding: 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    color: var(--color-text);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+  }
+
+  .post-card a:hover {
+    background: var(--color-bg-alt);
+    box-shadow: 0 4px 12px var(--color-shadow);
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .post-card time,
+  .reading-time {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-card h3 {
+    margin: 0.25rem 0 0.4rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  .post-card p {
+    color: var(--color-text-muted);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .tag {
+    background: var(--color-bg-alt);
+    padding: 0.15rem 0.55rem;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+  }
+</style>

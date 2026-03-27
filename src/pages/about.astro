@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About">
+  <h1>About</h1>
+
+  <section class="about-section">
+    <p>
+      Soy Miguel, engineering manager. Estudié Ingeniería Eléctrica,
+      pero rápido descubrí que lo mío era la infraestructura a escala. Llevo más
+      de 10 años en eso, pasando por fintech, banca, e-commerce y energía desde
+      Venezuela, Colombia y España.
+    </p>
+    <p>
+      Hoy lidero equipos de platform engineering y ciberseguridad, y dedico parte
+      de mi tiempo a aconsejar a personas y equipos para que no cometan los mismos
+      errores técnicos que yo cometí. Últimamente estoy metido en AI aplicada a
+      operaciones, construyendo agentes autónomos para DevOps.
+    </p>
+  </section>
+
+  <section class="about-section">
+    <h2>Contacto</h2>
+    <ul class="contact-links">
+      <li><a href="https://github.com/macuartin">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/macuartin/">LinkedIn</a></li>
+      <li><a href="mailto:macuartin@gmail.com">macuartin@gmail.com</a></li>
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  h1 { margin-top: 0; }
+
+  .about-section {
+    margin-bottom: 2rem;
+  }
+
+  .about-section h2 {
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .about-section ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .about-section ul li {
+    padding: 0.3rem 0;
+  }
+
+  .contact-links a {
+    color: var(--color-accent);
+  }
+
+  .contact-links li {
+    padding: 0.25rem 0;
+  }
+</style>
