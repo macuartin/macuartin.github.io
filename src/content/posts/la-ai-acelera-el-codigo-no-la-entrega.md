@@ -6,7 +6,9 @@ tags: ["ai", "engineering-management", "productividad", "dora"]
 draft: true
 ---
 
-El 16 de abril de 2026, más de 400 líderes senior de ingeniería se reunieron en San Francisco en el DX Annual. El dato que dominó las conversaciones fue uno que el mercado todavía no ha terminado de procesar: el 90% de los equipos de ingeniería usa herramientas de AI coding de forma regular, el 67% espera ganancias de velocidad del 25% o más, y el 75% de los desarrolladores reporta sentirse más productivo. Pero las empresas no están viendo mejoras equivalentes en delivery ni en resultados de negocio.
+El 16 de abril de 2026, más de 400 líderes senior de ingeniería se reunieron en San Francisco en el DX Annual. El dato que dominó las conversaciones fue uno que el mercado todavía no ha terminado de procesar. Según el reporte de Atlassian y los datos de Faros AI, el 90% de los equipos de ingeniería usa herramientas de AI coding de forma regular (frente al 61% del año anterior), el 67% espera ganancias de velocidad del 25% o más, y el 75% de los desarrolladores reporta sentirse más productivo. Pero las empresas no están viendo mejoras equivalentes en delivery ni en resultados de negocio.
+
+Vale la pena distinguir desde el inicio entre tres tipos de evidencia: lo que un desarrollador siente (subjetivo), lo que se observa en métricas de actividad como PRs o commits (objetivo pero parcial), y lo que termina llegando al negocio como features entregadas (lo que realmente importa). El gap está entre los dos primeros, donde la AI sí mueve la aguja, y el tercero, donde no se está moviendo.
 
 No es un problema de la AI. Es un problema de dónde está el cuello de botella.
 
@@ -25,9 +27,13 @@ La lectura honesta es incómoda: la AI aceleró la creación de código, pero no
 
 Hay un principio clásico en computación llamado Ley de Amdahl. La aceleración total de un sistema está limitada por la fracción que no puedes paralelizar. En términos de un pipeline de delivery, si optimizas una parte del proceso pero el resto no escala, el throughput total solo mejora marginalmente.
 
-La creación de código era el 30% del tiempo real del pipeline en la mayoría de equipos. El 70% restante es revisión, testing, approvals, coordinación entre equipos, ventanas de deploy, rollback plans. Si la AI hace que el 30% cueste la mitad, el pipeline completo solo se acelera un 15%. Si además los PRs son más grandes y por tanto más caros de revisar, la ganancia real puede ser negativa.
+La heurística común en equipos de plataforma es que la creación de código representa una fracción minoritaria del tiempo real del pipeline (la mayoría es revisión, testing, approvals, coordinación entre equipos, ventanas de deploy, rollback plans). Si la AI hace que esa fracción cueste la mitad, el pipeline completo solo se acelera marginalmente. Si además los PRs son más grandes y por tanto más caros de revisar, la ganancia real puede ser negativa.
 
 Esto no es teórico. Es lo que está pasando en equipos concretos hoy.
+
+## Una matización honesta
+
+No todos los equipos están en este escenario. Hay equipos que sí están viendo mejoras de delivery con AI coding, y suelen tener un denominador común: rediseñaron el pipeline en paralelo a la adopción de la herramienta. KW Campaigns, por ejemplo, redujo aprobaciones manuales un 63% manteniendo compliance y multiplicó velocity por 3.1 sin nuevas contrataciones. La diferencia entre los equipos que ganan delivery y los que no es casi siempre el rediseño del proceso, no la elección de herramienta. La AI sin rediseño es aceleración del cuello de botella, no liberación de él.
 
 ## Qué se está midiendo mal
 
@@ -61,3 +67,10 @@ Algunas ideas que están funcionando en equipos que lo han reconocido:
 La AI no mejora automáticamente la capacidad de entrega de un equipo. Mejora la capacidad individual de escribir código y desplaza el cuello de botella al siguiente eslabón del proceso. Si ese siguiente eslabón es el review humano, el deploy manual o un gate de compliance diseñado para otro volumen, la ganancia de velocidad se queda en la percepción del desarrollador, no en el resultado de negocio.
 
 El trabajo del engineering manager en 2026 no es elegir qué herramienta de AI coding adoptar. Es rediseñar el pipeline de entrega para que la aceleración del código se traduzca en aceleración de entrega. Y eso, a diferencia de adoptar una herramienta nueva, no se compra.
+
+## Fuentes
+
+- [Atlassian Developer Experience Report](https://www.atlassian.com/blog/developer/developer-experience-report-2025): adopción de AI coding tools, métricas de actividad y review.
+- [Faros AI: AI in software engineering](https://www.faros.ai/blog/ai-software-engineering): análisis del gap entre velocity individual y delivery de equipo.
+- [DORA capabilities](https://dora.dev/capabilities/): métricas de delivery (deployment frequency, lead time, change failure rate, MTTR).
+- [SPACE framework (ACM Queue)](https://queue.acm.org/detail.cfm?id=3454124): paper original de Forsgren et al. sobre medición balanceada de productividad.
